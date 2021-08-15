@@ -50,7 +50,7 @@ def article(url):
     response = requests.get(url, headers = my_headers)
     
     # 2-1 把網頁程式碼(HTML) 丟入 bs4模組分析
-    soup = bs4.BeautifulSoup(response.text,"html.parser")
+    soup = bs4.BeautifulSoup(response.text,"htmln .parser")
     # 2-2 查找所有html 元素 過濾出 標籤名稱為 'div' 同時class為 title 
     titles = soup.find_all('div','bbs-screen bbs-content')
     
@@ -71,7 +71,6 @@ get_one_page(link)
 with open('setting.json',mode='r',encoding='utf8') as jfile:
             jdata=json.load(jfile)
 while(1):   
-    
     print('請輸入要看的文章:')
     cmd = int(input())
     #print(cmd)
