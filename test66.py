@@ -5,8 +5,15 @@ import datetime
 import time
 
 
-now_time = datetime.datetime.now().strftime('%H:%M')
 
-if(now_time == '17:34'):
-    print(now_time)
+
+while(1):
+    now_time = datetime.datetime.now().strftime('%H:%M:%S')
+    time.sleep(1)
+    if(now_time =='10:48:00'):
+        print('時間到')
+        
+        
+
+    
 
