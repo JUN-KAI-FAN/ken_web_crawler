@@ -35,12 +35,13 @@ def get_one_page(URL):
     # 因為我們有多個Tags存放在 List titles中。
     # 所以需要使用for 迴圈將逐筆將List
     url_list =[]
-    
+    i = 0
     for t in titles:
+        i=i+1
         url_list.append("https://www.ptt.cc"+t.a.get("href"))
         #jdata['URL'] = "https://www.ptt.cc"+t.a.get("href")
         #time.sleep(0.1)
-        print(t.text.strip())  #strip 是把空白去掉的意思。
+        print(str(i)+ ". " + t.text.strip())  #strip 是把空白去掉的意思。
         print("https://www.ptt.cc"+t.a.get("href"))
         
     with open('setting.json',mode='r',encoding='utf8') as jfile:
@@ -48,20 +49,18 @@ def get_one_page(URL):
     jdata['URL'] = url_list
     with open('setting.json',mode='w',encoding='utf8') as jfile:
         jdata=json.dump(jdata, jfile, indent = 4)
-
-    with open('setting.json',mode='r',encoding='utf8') as jfile:
-            jdata=json.load(jfile) 
-    
-    print(str(jdata['URL'][0]))
-        
-        
+  
 
 # 組成 正確 URL
 link = "https://www.ptt.cc/bbs/Gossiping/index.html"
 # 執行單頁面網頁爬蟲
 get_one_page(link)
 # 避免被太快被 PTT 封鎖請求
-    
+with open('setting.json',mode='r',encoding='utf8') as jfile:
+            jdata=json.load(jfile) 
+
+print('請輸入要看的文章')
+print(str(jdata['URL'][0]))    
         
         
 
