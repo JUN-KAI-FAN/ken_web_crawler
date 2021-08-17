@@ -50,7 +50,7 @@ def article(url):
     response = requests.get(url, headers = my_headers)
     
     # 2-1 把網頁程式碼(HTML) 丟入 bs4模組分析
-    soup = bs4.BeautifulSoup(response.text,"htmln .parser")
+    soup = bs4.BeautifulSoup(response.text,"html.parser")
     # 2-2 查找所有html 元素 過濾出 標籤名稱為 'div' 同時class為 title 
     titles = soup.find_all('div','bbs-screen bbs-content')
     
@@ -58,8 +58,9 @@ def article(url):
     # 因為我們有多個Tags存放在 List titles中。
     # 所以需要使用for 迴圈將逐筆將List
 
+
     for t in titles:
-        #time.sleep(0.1)
+        time.sleep(0.1)
         print( t.text.strip())  #strip 是把空白去掉的意思。
         
 
@@ -68,12 +69,14 @@ link = "https://www.ptt.cc/bbs/Gossiping/index.html"
 # 執行單頁面網頁爬蟲
 get_one_page(link)
 # 避免被太快被 PTT 封鎖請求
+
 with open('setting.json',mode='r',encoding='utf8') as jfile:
             jdata=json.load(jfile)
 while(1):   
     print('請輸入要看的文章:')
     cmd = int(input())
-    #print(cmd)
+    print(cmd)
+    #print(jdata['URL'][cmd-1])
     article(jdata['URL'][cmd-1])
 #print(str(jdata['URL'][0]))    
         
